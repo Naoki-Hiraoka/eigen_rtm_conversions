@@ -6,8 +6,16 @@
 #include <Eigen/Eigen>
 
 namespace eigen_rtm_conversions{
-  void vectorEigenToRTM(const Eigen::VectorXd& e, _CORBA_Sequence<double>& r);
-  void vectorRTMToEigen(const _CORBA_Sequence<double>& r, Eigen::VectorXd& e);
+  template<int rows>
+  void vectorEigenToRTM(const Eigen::Matrix<double,rows,1>& e, _CORBA_Sequence<double>& r){
+    r.length(e.size());
+    for(int i=0;i<e.size();i++) r[i] = e[i];
+  }
+  template<int rows>
+  void vectorRTMToEigen(const _CORBA_Sequence<double>& r, Eigen::Matrix<double,rows,1>& e){
+    e.resize(r.length());
+    for(int i=0;i<r.length();i++) e[i] = r[i];
+  }
   void vectorEigenToRTM(const Eigen::Vector3d& e, RTC::Vector3D& r);
   void vectorRTMToEigen(const RTC::Vector3D& r, Eigen::Vector3d& e);
   void pointEigenToRTM(const Eigen::Vector3d& e, RTC::Point3D& r);

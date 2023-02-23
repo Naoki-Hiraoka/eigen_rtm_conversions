@@ -1,14 +1,6 @@
 #include <eigen_rtm_conversions/eigen_rtm_conversions.h>
 
 namespace eigen_rtm_conversions{
-  void vectorEigenToRTM(const Eigen::VectorXd& e, _CORBA_Sequence<double>& r){
-    r.length(e.size());
-    for(int i=0;i<e.size();i++) r[i] = e[i];
-  }
-  void vectorRTMToEigen(const _CORBA_Sequence<double>& r, Eigen::VectorXd& e){
-    e.resize(r.length());
-    for(int i=0;i<r.length();i++) e[i] = r[i];
-  }
   void vectorEigenToRTM(const Eigen::Vector3d& e, RTC::Vector3D& r){
     r.x = e[0];
     r.y = e[1];
