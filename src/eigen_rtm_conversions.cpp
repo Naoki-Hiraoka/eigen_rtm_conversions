@@ -53,11 +53,11 @@ namespace eigen_rtm_conversions{
          * Eigen::AngleAxisd(r.p, Eigen::Vector3d::UnitY())
          * Eigen::AngleAxisd(r.r, Eigen::Vector3d::UnitX())).toRotationMatrix();
   }
-  void positionEigenToRTM(const Eigen::Transform<double, 3, Eigen::AffineCompact>& e, RTC::Pose3D& r){
+  void poseEigenToRTM(const Eigen::Transform<double, 3, Eigen::AffineCompact>& e, RTC::Pose3D& r){
     pointEigenToRTM(e.translation(),r.position);
     orientationEigenToRTM(e.linear(),r.orientation);
   }
-  void positionRTMToEigen(const RTC::Pose3D& r, Eigen::Transform<double, 3, Eigen::AffineCompact>& e){
+  void poseRTMToEigen(const RTC::Pose3D& r, Eigen::Transform<double, 3, Eigen::AffineCompact>& e){
     pointRTMToEigen(r.position,e.translation());
     orientationRTMToEigen(r.orientation,e.linear());
   }

@@ -16,8 +16,8 @@ namespace eigen_rtm_conversions{
   void orientationRTMToEigen(const RTC::Orientation3D& r, Eigen::Matrix3d& e);
   void orientationEigenToRTM(const Eigen::Transform<double, 3, Eigen::AffineCompact>::LinearPart& e, RTC::Orientation3D& r);
   void orientationRTMToEigen(const RTC::Orientation3D& r, Eigen::Ref<Eigen::Transform<double, 3, Eigen::AffineCompact>::LinearPart> e);
-  void positionEigenToRTM(const Eigen::Transform<double, 3, Eigen::AffineCompact>& e, RTC::Pose3D& r);
-  void positionRTMToEigen(const RTC::Pose3D& r, Eigen::Transform<double, 3, Eigen::AffineCompact>& e);
+  void poseEigenToRTM(const Eigen::Transform<double, 3, Eigen::AffineCompact>& e, RTC::Pose3D& r);
+  void poseRTMToEigen(const RTC::Pose3D& r, Eigen::Transform<double, 3, Eigen::AffineCompact>& e);
 };
 
 #endif
