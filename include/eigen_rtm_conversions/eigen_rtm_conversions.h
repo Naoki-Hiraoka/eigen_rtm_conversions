@@ -16,6 +16,19 @@ namespace eigen_rtm_conversions{
     e.resize(r.length());
     for(int i=0;i<r.length();i++) e[i] = r[i];
   }
+  template<typename Derived, typename T>
+  void matrixEigenToRTM(const Eigen::SparseCompressedBase<Derived>& e, _CORBA_Sequence<T>& r) {
+    r.length(e.rows());
+    for(int i=0;i<e.rows();i++){
+      r[i].length(e.cols());
+      for(int j=0;j<e.cols();j++) r[i][j] = 0.0;
+    }
+    for (int k=0; k < e.outerSize(); ++k){
+      for (typename Eigen::SparseCompressedBase<Derived>::InnerIterator it(e,k); it; ++it){
+        r[it.row()][it.col()] = it.value();
+      }
+    }
+  }
   void vectorEigenToRTM(const Eigen::Vector3d& e, RTC::Vector3D& r);
   void vectorRTMToEigen(const RTC::Vector3D& r, Eigen::Vector3d& e);
   void pointEigenToRTM(const Eigen::Vector3d& e, RTC::Point3D& r);
